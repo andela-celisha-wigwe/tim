@@ -3,26 +3,31 @@ var data = [
 	{
 		name: "MIT801",
 		desc: "Introduction To Information Techonology",
+		type: "Compulsory",
 		unit: "3"
 	},
 	{
 		name: "MIT802",
 		desc: "Introduction To Database",
+		type: "Compulsory",
 		unit: "3"
 	},
 	{
 		name: "MIT803",
 		desc: "Programming Languages",
+		type: "Compulsory",
 		unit: "3"
 	},
 	{
 		name: "MIT805",
 		desc: "Computer Systems Architecture and Organisation",
+		type: "Compulsory",
 		unit: "3"
 	},
 	{
 		name: "MIT821",
 		desc: "Software Systems",
+		type: "Compulsory",
 		unit: "3"
 	},
 
@@ -36,26 +41,31 @@ var data = [
 	{
 		name: "MIT804",
 		desc: "Introduction To OOP - JAVA",
+		type: "Compulsory",
 		unit: "3"
 	},
 	{
 		name: "MIT806",
 		desc: "IT and Law",
+		type: "Compulsory",
 		unit: "3"
 	},
 	{
 		name: "MIT811",
 		desc: "Business Information Systems",
+		type: "Compulsory",
 		unit: "3"
 	},
 	{
 		name: "MIT813",
 		desc: "Advanced Database Systems",
+		type: "Compulsory",
 		unit: "3"
 	},
 	{
 		name: "MIT822",
 		desc: "Operating Systems",
+		type: "Compulsory",
 		unit: "3"
 	}
 ]
@@ -118,6 +128,10 @@ GPCalc.prototype.reduce = function () {
 
 GPCalc.prototype.addCourse = function (course) {
 	this.courses.push(course)
+}
+
+GPCalc.prototype.numCourses = function () {
+	return this.courses.length
 }
 
 GPCalc.prototype.setScores = function () {
