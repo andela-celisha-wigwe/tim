@@ -67,7 +67,51 @@ var data = [
 		desc: "Operating Systems",
 		type: "Compulsory",
 		unit: "3"
-	}
+	},
+
+
+
+
+
+
+
+	// MIT2 1st Semester 
+	{
+		name: "MIT812",
+		desc: "Computer Network & Communication Protocols",
+		type: "Compulsory",
+		unit: "3"
+	},
+	{
+		name: "MIT815",
+		desc: "Internet Programming & Applications",
+		type: "Compulsory",
+		unit: "3"
+	},
+	{
+		name: "MIT824",
+		desc: "Seminar on Current Topics",
+		type: "Compulsory",
+		unit: "3"
+	},
+	{
+		name: "MIT807",
+		desc: "AI & Its Applications",
+		type: "Elective",
+		unit: "3"
+	},
+	{
+		name: "MIT809",
+		desc: "Elements of Scientific Computing",
+		type: "Elective",
+		unit: "3"
+	},
+	{
+		name: "MIT817",
+		desc: "Software Engineering",
+		type: "Elective",
+		unit: "3"
+	},
 ]
 
 
