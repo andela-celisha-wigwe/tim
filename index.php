@@ -2,6 +2,7 @@
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<meta charset="UTF-8">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js" ></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
 		.grade-input {
@@ -9,7 +10,7 @@
 		}
 
 		.container {
-			max-width: 900px;
+			max-width: 1160px;
 			margin: 10px auto;
 			padding: 0px;
 		}
@@ -48,6 +49,13 @@
 			font-size: 70%;
 		}
 
+		.semester-title {
+			margin: 0 auto !important;
+			text-align: center;
+			background: rgb(245, 245, 245);
+			color: #337ab7;
+		}
+
 		#result-text {
 			font-weight: 300;
 		}
@@ -59,6 +67,21 @@
 		    font-style: italic;
 		    background: #337ab7;
 		    color: #fff;
+		}
+
+		.compulsory, .elective {
+		    padding: 0 2px;
+		    color: #337ab7;
+		    font-weight: 700;
+		}
+
+		.elective {
+			color: #246d38;
+		}
+
+		#limit {
+			color: #d9534f;
+		    font-weight: bold;
 		}
 
 		.single-course {
@@ -74,22 +97,21 @@
 	</style>
 	<script src="./calculator.js"></script>
 	<script type="text/javascript">
-		var fields = data.map(function (course) {
-			var name = course.name
-			var label = '<div class="col-md-4 col-sm-2 col-xs-12"><label for="' + name.toLowerCase() + '">' + name.toUpperCase() + ': <span class="hidden-sm course-description">' + course.desc + '</span><br><span class="type">' + course.type + '</sapn></label></div>'
-			var input = '<div class="col-md-8 col-sm-10 col-xs-12"><input type="text" maxlength="1" value="" placeholder="a, b" name="' + name.toLowerCase() + '" id="' + name.toLowerCase() + '" class="grade-input form-control"></div>';
-			return '<div class="row single-course">' + label + input + '</div>'
-		}).reduce(function (a,b) {
-			return a+b
-		})
-
 		var displayWarning = function () {
 			document.getElementById('warning').innerHTML = "You have not entered any grades."
 		}
 
 		var displayForm = function (html) {
 			var scoresContainer = document.getElementById('scores-container')
-			scoresContainer.innerHTML = '<div>' + fields + '</div>'
+			var courseTemplate = document.getElementById("course-template").innerHTML;
+			var make = Handlebars.compile(courseTemplate);
+			for (semester in data) {
+				scoresContainer.innerHTML += '<h2 class="semester-title">' + data[semester].name + '</h2>'
+				data[semester].courses.map(function (course) {
+					var course = make(course);
+					scoresContainer.innerHTML += course
+				})
+			}
 
 			document.getElementById('calculate-cgpa').addEventListener('click', function () {
 				var courses = []
@@ -117,9 +139,25 @@
 	<title>Document</title>
 </head>
 <body onload="displayForm()">
+	<script type="text/x-handlebars-template" id="course-template">
+		<div class="row single-course">
+			<div class="col-md-4 col-sm-2 col-xs-12">
+				<label for="{{name}}">{{name}}:
+					<span class="hidden-sm course-description">{{desc}}</span><br>
+					<span class="type {{type}}">{{type}}</span>
+				</label>
+			</div>
+			<div class="col-md-8 col-sm-10 col-xs-12">
+				<input type="text" maxlength="1" value="" placeholder="a, b" name="{{name}}" id="{{name}}" class="grade-input form-control">
+			</div>
+		</div>
+	</script>
 
 	<div class="panel panel-default container">
-		<div class="panel-heading"><h3>MIT CGPA Calculator <span class="pull-right hidden-xs" id="hash">#operation_who_is_159?</span></h3></div>
+		<div class="panel-heading">
+			<h3>MIT CGPA Calculator <span class="pull-right hidden-xs" id="hash">#operation_who_is_159?</span></h3>
+			<!-- <h4 id="limit">2.45</h4> -->
+		</div>
 		<div id="warning" class="btn-danger"></div> 
 		<h1 id="result">
 			<span id="result-text">Your CGPA will show here.</span>
