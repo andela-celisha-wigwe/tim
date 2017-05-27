@@ -176,8 +176,8 @@ Course.prototype.getPoint = function (grade) {
 
 function GPCalc(courses = []) {
 	this.courses = courses
-	this.totalUnit = 0;
-
+	this.totalUnits = 0;
+	this.totalScore = 0;
 }
 
 GPCalc.prototype.reduce = function () {
@@ -207,7 +207,7 @@ GPCalc.prototype.setUnits = function (course) {
 }
 
 GPCalc.prototype.calculate = function () {
-	var totalScore = this.setScores().reduce(this.reduce());
-	var totalUnit = this.setUnits().reduce(this.reduce());
-	return totalScore/totalUnit;
+	this.totalScore = this.setScores().reduce(this.reduce());
+	this.totalUnits = this.setUnits().reduce(this.reduce());
+	return this.totalScore/this.totalUnits;
 }

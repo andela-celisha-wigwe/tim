@@ -70,6 +70,14 @@
 		    color: #fff;
 		}
 
+		#extra-info {
+			display: block;
+		    font-size: 55%;
+		    font-weight: normal;
+		    font-style: italic;
+		    color: #d9534f;
+		}
+
 		span.compulsory, span.elective {
 		    padding: 0 2px;
 		    color: #337ab7;
@@ -129,15 +137,20 @@
 				for (var i = 0; i < inputs.length; i++) {
 					var courseField = inputs[i]
 					if (courseField.tagName.toUpperCase() == "INPUT" && validGrades.indexOf(courseField.value.trim().toUpperCase()) != -1) {
-						var course = new Course(courseField.name, courseField.value)
+						var course = new Course(courseField.name, courseField.value, parseInt(courseField.dataset.unit))
 						courses.push(course)
 					}
 				}
 				if (courses.length > 0 ) {
 					var calculator = new GPCalc(courses);
 					document.getElementById('warning').innerHTML = ""
-					document.getElementById('result-text').innerHTML = '<span class="result-text hidden-sm">CGPA: </span>' + parseFloat(Math.round(calculator.calculate() * 100) / 100).toFixed(2);
+					
+					var cgpaFloat = calculator.calculate();
+					var unitsTaken = calculator.totalUnits;
+					
+					document.getElementById('result-text').innerHTML = '<span class="result-text hidden-sm">CGPA: </span>' + parseFloat(Math.round(cgpaFloat * 100) / 100).toFixed(2);
 					document.getElementById('result-count').innerHTML = 'Courses: ' + calculator.numCourses()
+					document.getElementById('extra-info').innerHTML = "Out of 54units, your total units: " + unitsTaken + " units. You need " + (54 - unitsTaken) + ' units.'
 				} else {
 					displayWarning()
 				}
@@ -166,7 +179,7 @@
 				</label>
 			</div>
 			<div class="col-md-8 col-sm-10 col-xs-12">
-				<input type="text" maxlength="1" value="" placeholder="a, b" name="{{name}}" id="{{name}}" class="grade-input form-control">
+				<input type="text" maxlength="1" value="" placeholder="a, b" name="{{name}}" id="{{name}}" class="grade-input form-control" data-unit="{{unit}}">
 			</div>
 		</div>
 	</script>
@@ -180,6 +193,7 @@
 		<h1 id="result">
 			<span id="result-text">Your CGPA will show here.</span>
 			<span id="result-count"></span>
+			<span id="extra-info"></span>
 		</h1>
 		  <div class="panel-body">
 			<div id="scores-container" class="row">
