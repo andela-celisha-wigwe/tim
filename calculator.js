@@ -113,6 +113,39 @@ var data = {
 				type: "Elective",
 				unit: "3"
 			},
+
+
+			// MIT2 2nd Semester 
+			{
+				name: "MIT808",
+				desc: "Concepts and Application of E-Business",
+				type: "Compulsory",
+				unit: "2"
+			},
+			{
+				name: "MIT814",
+				desc: "Human Computer Interactions (HCI)",
+				type: "Elective",
+				unit: "3"
+			},
+			{
+				name: "MIT816",
+				desc: "Data Warehousing, Data Mining and Business Intelligence",
+				type: "Elective",
+				unit: "3"
+			},
+			{
+				name: "MIT823",
+				desc: "Office Automation and Project Management",
+				type: "Elective",
+				unit: "3"
+			},
+			{
+				name: "MIT899",
+				desc: "Project",
+				type: "Compulsory",
+				unit: "6"
+			},
 		]
 	}
 }
@@ -132,32 +165,12 @@ function Course (name, grade, unit = 3) {
 	this.grade = grade.toUpperCase()
 }
 
+const grade2Point = {
+	A:5, B:4, C:3, D:2, E:1, F:0
+}
+
 Course.prototype.getPoint = function (grade) {
-	var point = 0;
-	switch (grade) {
-		case 'A':
-			point = 5;
-			break;
-		case 'B':
-			point = 4;
-			break;
-		case 'C':
-			point = 3;
-			break;
-		case 'D':
-			point = 2;
-			break;
-		case 'E':
-			point = 1;
-			break;
-		case 'F':
-			point = 0;
-			break;
-		default:
-			point = 0;
-			break;
-	}
-	return point;
+	return grade2Point[grade] || 0;
 }
 
 

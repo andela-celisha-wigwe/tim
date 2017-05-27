@@ -70,13 +70,13 @@
 		    color: #fff;
 		}
 
-		.compulsory, .elective {
+		span.compulsory, span.elective {
 		    padding: 0 2px;
 		    color: #337ab7;
 		    font-weight: 700;
 		}
 
-		.elective {
+		span.elective {
 			color: #246d38;
 		}
 
@@ -86,9 +86,17 @@
 		}
 
 		.single-course {
-			margin-right: 0px;
-			margin-left: 0px;
+			margin: 4px 0;
 			padding: 10px 0;
+			border-left: solid 5px;
+		}
+
+		.single-course.compulsory {
+			border-left-color: #337ab7;
+		}
+
+		.single-course.elective {
+			border-left-color: #246d38;
 		}
 
 		.course-description {
@@ -150,7 +158,7 @@
 </head>
 <body onload="displayForm()">
 	<script type="text/x-handlebars-template" id="course-template">
-		<div class="row single-course">
+		<div class="row single-course {{type}}">
 			<div class="col-md-4 col-sm-2 col-xs-12">
 				<label for="{{name}}">{{name}}:
 					<span class="hidden-sm course-description">{{desc}}</span><br>
@@ -165,7 +173,7 @@
 
 	<div class="panel panel-default container">
 		<div class="panel-heading">
-			<h3>MIT CGPA Calculator <span class="pull-right hidden-xs" id="hash">#operation_who_is_159?</span></h3>
+			<h3>MIT CGPA Calculator</h3>
 			<!-- <h4 id="limit">2.45</h4> -->
 		</div>
 		<div id="warning" class="btn-danger"></div> 
