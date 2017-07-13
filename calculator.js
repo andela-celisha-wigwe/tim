@@ -120,7 +120,7 @@ var data = {
 				name: "MIT808",
 				desc: "Concepts and Application of E-Business",
 				type: "Compulsory",
-				unit: "2"
+				unit: "3"
 			},
 			{
 				name: "MIT814",
