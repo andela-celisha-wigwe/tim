@@ -42,12 +42,21 @@
 			padding: 1px;
 			color: #337ab7;
 		}
-		.type {
+		.type-unit {
 			text-align: left;
 			font-style: italic;
 			display: block;
 			font-weight: 200;
 			font-size: 70%;
+		}
+
+		.units {
+			color: #ebebeb;
+		    background: #337ab7;
+		    padding: 2px 4px;
+		    font-weight: 500;
+		    font-size: 12px;
+		    border-radius: 2px;
 		}
 
 		.semester-title {
@@ -79,7 +88,6 @@
 		}
 
 		span.compulsory, span.elective {
-		    padding: 0 2px;
 		    color: #337ab7;
 		    font-weight: 700;
 		}
@@ -175,7 +183,7 @@
 			<div class="col-md-4 col-sm-2 col-xs-12">
 				<label for="{{name}}">{{name}}:
 					<span class="hidden-sm course-description">{{desc}}</span><br>
-					<span class="type {{type}}">{{type}}</span>
+					<span class="type-unit"> <em class="units">{{unit}} units</em> <span class="{{type}}">{{type}}</span> </span>
 				</label>
 			</div>
 			<div class="col-md-8 col-sm-10 col-xs-12">
